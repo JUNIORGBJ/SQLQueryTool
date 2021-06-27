@@ -97,7 +97,7 @@
 			this.mniCreateRowUpdateQuery.Image = global::SqlQueryTool.Properties.Resources.table_edit;
 			this.mniCreateRowUpdateQuery.Name = "mniCreateRowUpdateQuery";
 			this.mniCreateRowUpdateQuery.Size = new System.Drawing.Size(188, 22);
-			this.mniCreateRowUpdateQuery.Text = "Create UPDATE query";
+			this.mniCreateRowUpdateQuery.Text = "Criar consulta UPDATE";
 			this.mniCreateRowUpdateQuery.Click += new System.EventHandler(this.mniCreateRowUpdateQuery_Click);
 			// 
 			// mniCreateRowDeleteQuery
@@ -105,7 +105,7 @@
 			this.mniCreateRowDeleteQuery.Image = global::SqlQueryTool.Properties.Resources.table_row_delete;
 			this.mniCreateRowDeleteQuery.Name = "mniCreateRowDeleteQuery";
 			this.mniCreateRowDeleteQuery.Size = new System.Drawing.Size(188, 22);
-			this.mniCreateRowDeleteQuery.Text = "Create DELETE query";
+			this.mniCreateRowDeleteQuery.Text = "Criar consulta DELETE";
 			this.mniCreateRowDeleteQuery.Click += new System.EventHandler(this.mniCreateRowDeleteQuery_Click);
 			// 
 			// QueryEditor

@@ -83,7 +83,7 @@ namespace SqlQueryTool.Forms
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Problem loading stored procs", "Warning", MessageBoxButtons.OK,
+                    MessageBox.Show("Problema ao carregar os proc. armazenados", "Aviso", MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
                 }
 
@@ -110,8 +110,8 @@ namespace SqlQueryTool.Forms
                 {
                     Name = "Tables",
                     Text = Settings_MinimumRowCount == 0
-                        ? "Tables"
-                        : $"Tables (>= {Settings_MinimumRowCount} rows)",
+                        ? "Tabelas"
+                        : $"Tabelas (>= {Settings_MinimumRowCount} linhas)",
                     ContextMenuStrip = cmnTableCommandsGlobal
                 };
                 foreach (var tableInfo in
@@ -130,7 +130,7 @@ namespace SqlQueryTool.Forms
 
             if (procs.Count > 0)
             {
-                var procsRootNode = new TreeNode {Name = "Procs", Text = "Stored procedures"};
+                var procsRootNode = new TreeNode {Name = "Procs", Text = "Procedimentos armazenados" };
                 foreach (var proc in procs.Where(p =>
                     p.Name.ToLower().Contains(filterText) ||
                     chkSearchSPContents.Checked && p.Content.ToLower().Contains(filterText)))
@@ -145,7 +145,7 @@ namespace SqlQueryTool.Forms
 
             if (views.Count > 0)
             {
-                var viewsRootNode = new TreeNode {Name = "Views", Text = "Views"};
+                var viewsRootNode = new TreeNode {Name = "Views", Text = "Exibições"};
                 foreach (var view in views.Where(v =>
                     v.Name.ToLower().Contains(filterText) ||
                     chkSearchSPContents.Checked && v.Definition.ToLower().Contains(filterText)))

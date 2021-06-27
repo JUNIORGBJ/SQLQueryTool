@@ -14,7 +14,7 @@ namespace SqlQueryTool.Forms
     [DebuggerDisplay("Form1")]
     public partial class SQLQueryTool : Form
     {
-        private static readonly string AUTOSAVED_QUERIES_FILE_NAME = "AutoSavedQueries";
+        private static readonly string AUTOSAVED_QUERIES_FILE_NAME = "Consultas salvas automaticamente";
         private ConnectionData currentConnectionData;
         private IEnumerable<CommandParameter> lastParameterSet = new List<CommandParameter>();
 
@@ -42,26 +42,26 @@ namespace SqlQueryTool.Forms
                 grpDatabaseObjects.Enabled = true;
                 splMainContent.Panel2.Enabled = true;
 
-                lblStatusbarInfo.Text = $"Connected to {connectionData.DatabaseName}@{connectionData.ServerName}";
-                Text = $"{connectionData} - SQL Query Tool";
+                lblStatusbarInfo.Text = $"Conectado a {connectionData.DatabaseName}@{connectionData.ServerName}";
+                Text = $"{connectionData} - SQL - Ferramenta de Consulta v1.0 - By: ‹gBj›";
 
                 RestoreAutoSavedQueries(currentConnectionData.ToString());
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Problem connecting to database:\n{ex.Message}", "Connection error",
+                MessageBox.Show($"Problema ao conectar ao banco de dados:\n{ex.Message}", "Erro de conexão",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void AddNewQueryPage(string queryText, string tabName = "")
         {
-            var queryEditor = new QueryEditor(queryText) {Name = "queryEditor", Dock = DockStyle.Fill};
+            var queryEditor = new QueryEditor(queryText) {Name = "Editor de consulta", Dock = DockStyle.Fill};
             queryEditor.OnRowUpdate += queryEditor_OnRowUpdate;
             queryEditor.OnRowDelete += queryEditor_OnRowDelete;
 
             tabName = string.IsNullOrEmpty(tabName)
-                ? $"Query {tabQueries.TabPages.Count + 1}"
+                ? $"Consulta {tabQueries.TabPages.Count + 1}"
                 : tabName;
             var tpQueryPage = new TabPage(tabName) {ImageIndex = 0};
 
@@ -72,7 +72,7 @@ namespace SqlQueryTool.Forms
 
         private void RunQuery(TabPage currentPage)
         {
-            var queryEditor = currentPage.Controls["queryEditor"] as QueryEditor;
+            var queryEditor = currentPage.Controls["Editor de consulta"] as QueryEditor;
             var queryText = queryEditor.QueryText;
 
             if (string.IsNullOrEmpty(queryText)) return;
@@ -99,7 +99,7 @@ namespace SqlQueryTool.Forms
                         stopWatch.Stop();
                         var resultTime = decimal.Round(stopWatch.ElapsedMilliseconds / 1000m, 1);
                         lblStatusbarInfo.Text =
-                            $"{results.Rows.Count} rows ({resultTime} seconds; {currentPage.Text}, {DateTime.Now:HH:mm:ss})";
+                            $"{results.Rows.Count} linhas ({resultTime} segundos; {currentPage.Text}, {DateTime.Now:HH:mm:ss})";
 
                         queryEditor.ShowResults(new BindingSource {DataSource = results}, currentPage.Text);
                     }
@@ -108,9 +108,9 @@ namespace SqlQueryTool.Forms
                         var rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected >= 0)
                             lblStatusbarInfo.Text =
-                                $"{rowsAffected} row{(rowsAffected == 1 ? "" : "s")} modified ({currentPage.Text}, {DateTime.Now:HH:mm:ss})";
+                                $"{rowsAffected} linha{(rowsAffected == 1 ? "" : "s")} modificada ({currentPage.Text}, {DateTime.Now:HH:mm:ss})";
                         else
-                            lblStatusbarInfo.Text = $"Command executed ({currentPage.Text}, {DateTime.Now:HH:mm:ss})";
+                            lblStatusbarInfo.Text = $"Comando executado ({currentPage.Text}, {DateTime.Now:HH:mm:ss})";
                     }
                 }
 
@@ -120,7 +120,7 @@ namespace SqlQueryTool.Forms
             catch (Exception ex)
             {
                 lblStatusbarInfo.Text = "";
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -128,7 +128,7 @@ namespace SqlQueryTool.Forms
         {
             queryText = queryText.ToUpper();
             if (QueryBuilder.IsDestroyQuery(queryText) && !queryText.Contains("WHERE"))
-                return MessageBox.Show("UPDATE/DELETE query without a WHERE clause, do you wish to proceed?", "Warning",
+                return MessageBox.Show("UPDATE/DELETE consulta sem uma cláusula WHERE, deseja continuar?", "Aviso",
                            MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK;
             return true;
         }
@@ -178,7 +178,7 @@ namespace SqlQueryTool.Forms
             foreach (TabPage tabPage in tabQueries.TabPages)
             {
                 var name = tabPage.Text;
-                var contents = (tabPage.Controls["queryEditor"] as QueryEditor).QueryText;
+                var contents = (tabPage.Controls["Editor de consulta"] as QueryEditor).QueryText;
 
                 currentQueries.Add(new QueryItem(name, contents, currentConnectionData.ToString()));
             }
@@ -273,7 +273,7 @@ namespace SqlQueryTool.Forms
                 for (var i = 0; i < tabQueries.TabCount; i++)
                     if (tabQueries.GetTabRect(i).Contains(e.Location))
                     {
-                        mniCloseTabpage.Text = $"Close {tabQueries.TabPages[i].Text}";
+                        mniCloseTabpage.Text = $"Fechar: {tabQueries.TabPages[i].Text}";
 
                         tabQueries.Tag = tabQueries.TabPages[i];
                         cmnTabpage.Show(tabQueries, e.Location);

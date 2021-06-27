@@ -19,7 +19,7 @@ namespace SqlQueryTool.Forms
 
         private void Setup()
         {
-            chkIntegratedSecurity.Checked = true;
+            chkIntegratedSecurity.Checked = false;
         }
 
         private void chkIntegratedSecurity_CheckedChanged(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace SqlQueryTool.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Problem connecting to database:\n{ex.Message}", "Connection error",
+                MessageBox.Show($"Problema ao conectar ao banco de dados:\n{ex.Message}", "Erro de conexão",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -83,10 +83,15 @@ namespace SqlQueryTool.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return results;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

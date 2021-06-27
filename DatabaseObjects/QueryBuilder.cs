@@ -112,7 +112,7 @@ namespace SqlQueryTool.DatabaseObjects
             queryText.AppendFormat("{0}WHERE{0}\t{1} = {2}", Environment.NewLine, filterCell.ColumnName.ForQueries(),
                 filterCell.SqlFormattedValue);
             if (!Heuristics.GetIdColumnNames(tableName).Contains(filterCell.ColumnName.ToLower()))
-                queryText.AppendFormat("{0}\tAND 1 = 0 /* Review the WHERE clause! */", Environment.NewLine);
+                queryText.AppendFormat("{0}\tAND 1 = 0 /* Reveja a cláusula WHERE! */", Environment.NewLine);
 
             return queryText.ToString();
         }

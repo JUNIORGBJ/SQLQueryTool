@@ -17,7 +17,7 @@
     </UpgradeBackupLocation>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <ApplicationIcon>Resources\QueryTool.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <PublishUrl>http://localhost/SQLQueryTool/</PublishUrl>
     <Install>true</Install>
@@ -131,6 +131,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utils\WinFormsHelper.cs" />
+    <EmbeddedResource Include="Forms\ConnectionManager.resx">
+      <DependentUpon>ConnectionManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConnectionSettings.resx">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </EmbeddedResource>

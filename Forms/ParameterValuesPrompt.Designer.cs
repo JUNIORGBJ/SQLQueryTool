@@ -39,7 +39,7 @@
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
 			this.btnOK.TabIndex = 0;
-			this.btnOK.Text = "OK";
+			this.btnOK.Text = "Confirmar";
 			this.btnOK.UseVisualStyleBackColor = true;
 			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
 			// 
@@ -51,7 +51,7 @@
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 1;
-			this.btnCancel.Text = "Cancel";
+			this.btnCancel.Text = "Cancelar";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
 			// tblParameterValues
@@ -89,7 +89,7 @@
 			this.Name = "ParameterValuesPrompt";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Insert parameter values";
+			this.Text = "Insira os valores dos parâmetros";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
