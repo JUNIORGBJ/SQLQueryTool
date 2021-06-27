@@ -1,2 +1,2 @@
-# SQLQueryTool
-A portable Windows tool for browsing and querying MSSQL databases
+# SQL - Ferramenta de Consulta
+Para Shop Control 9
